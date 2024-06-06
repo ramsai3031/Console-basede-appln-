@@ -85,3 +85,79 @@ public class SalaryCounter {
 }
 
 
+
+3.findCricketerId
+
+import java.util.*;
+
+public class CricketerScores {
+
+    private static List<Integer> cricketers = new ArrayList<>();
+
+    public static void findCricketerId(int[] array, int size, int score) {
+      
+        if (size < 0) {
+            System.out.println("Invalid array size");
+            return;
+        }
+        
+  
+        if (score < 0) {
+            System.out.println("Invalid score");
+            return;
+        }
+        
+      
+        for (int num : array) {
+            if (num < 0) {
+                System.out.println("Invalid input");
+                return;
+            }
+        }
+        
+
+        for (int i = 0; i < size; i += 2) {
+            int id = array[i];
+            int cricketerScore = array[i + 1];
+            if (cricketerScore > score) {
+                cricketers.add(id);
+            }
+        }
+
+        for (int id : cricketers) {
+            System.out.println(id);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+      
+        int size = scanner.nextInt();
+        if (size < 0) {
+            System.out.println("Invalid array size");
+            return;
+        }
+
+        int[] array = new int[size];
+        
+      
+        for (int i = 0; i < size; i++) {
+            array[i] = scanner.nextInt();
+            if (array[i] < 0) {
+                System.out.println("Invalid input");
+                return;
+            }
+        }
+
+        // Read the given score
+        int score = scanner.nextInt();
+        if (score < 0) {
+            System.out.println("Invalid score");
+            return;
+        }
+
+        findCricketerId(array, size, score);
+    }
+}
+
