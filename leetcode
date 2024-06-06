@@ -23,4 +23,65 @@ class Main {
 }
 
 
+2.Repeated Salary Count
+
+import java.util.*;
+
+
+public class SalaryCounter {
+
+    public static int countRepeaters(int[] salaries, int size) {
+        if (size <= 0) {
+            System.out.println("Invalid Input");
+            return -1;
+        }
+        
+        for (int salary : salaries) {
+            if (salary < 0) {
+                System.out.println("Invalid Input");
+                return -1;
+            }
+        }
+
+        Map<Integer, Integer> salaryCount = new HashMap<>();
+        
+        for (int salary : salaries) {
+            salaryCount.put(salary, salaryCount.getOrDefault(salary, 0) + 1);
+        }
+
+        for (int count : salaryCount.values()) {
+            if (count > 1) {
+                return count;
+            }
+        }
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int size = scanner.nextInt();
+        if (size < 0) {
+            System.out.println("Invalid Input");
+            return;
+        }
+
+        int[] salaries = new int[size];
+        
+        for (int i = 0; i < size; i++) {
+            salaries[i] = scanner.nextInt();
+            if (salaries[i] < 0) {
+                System.out.println("Invalid Input");
+                return;
+            }
+        }
+
+        int result = countRepeaters(salaries, size);
+        if (result != -1) {
+            System.out.println(result);
+        }
+    }
+}
+
 
